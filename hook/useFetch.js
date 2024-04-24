@@ -281,23 +281,24 @@ const useFetch = (endpoint, query) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // const options = {
-  //   method: "GET",
-  //   url: `https://jsearch.p.rapidapi.com/${endpoint}`,
-  //   headers: {
-  //     "X-RapidAPI-Key": "04baf529b3msh7fd81e35f6375b6p11d502jsna152d0284ae3",
-  //     "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
-  //   },
-  //   params: { ...query },
-  // };
+  const options = {
+    method: "GET",
+    url: `https://jsearch.p.rapidapi.com/${endpoint}`,
+    headers: {
+      "X-RapidAPI-Key": "8477dbd98emshd151b292aed1bb7p1885bfjsn203415611dad",
+      "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
+    },
+    params: { ...query },
+  };
 
   const fetchData = async () => {
     setIsLoading(true);
 
     try {
-      // const response = await axios.request(options);
-      if (endpoint === "search") setData(response);
-      else setData(response.slice(2, 3));
+      const response = await axios.request(options);
+      setData(response.data.data);
+      // if (endpoint === "search") setData(response);
+      // else setData(response.slice(2, 3));
       setIsLoading(false);
     } catch (error) {
       setError(error);
